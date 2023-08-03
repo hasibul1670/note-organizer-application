@@ -1,24 +1,23 @@
 import { Helmet } from "react-helmet-async";
-import Banner from "./Banner";
-import Category from "./SliderCategory";
 
-import FAQ from "./FAQ";
-import HomeCoursesCategory from "./HomeDisplayCourses";
+import BabyCare from "./BabyCare";
+import Banner from "./Banner";
+import FiverAndPain from "./FiverAndPain";
+import PetMedicine from "./PetMedicine";
 
 const Home = () => {
   return (
-    <div>
+    <div className="">
       <Helmet>
-        <title> Sunlight Academy | Home</title>
+        <title> E-Medicine | Home</title>
       </Helmet>
-
       <Banner />
-
-      <Category />
-
-      <HomeCoursesCategory />
-
-      <FAQ />
+      <p className="text-xl font-bold flex justify-center mt-5 mb-5">
+        Our Products{" "}
+      </p>
+      <FiverAndPain />
+      <BabyCare />
+      <PetMedicine />
     </div>
   );
 };

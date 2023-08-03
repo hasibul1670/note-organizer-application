@@ -3,9 +3,9 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/opacity.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import LocalStorageImg from "../../Helpers/LocalStorageImg";
-import img1 from "../../assets/home/01.jpg";
-import img3 from "../../assets/home/03.jpg";
-import img4 from "../../assets/home/06.jpg";
+import img1 from "../../assets/bannerImage/p30.jpg";
+import img3 from "../../assets/bannerImage/p12.jpg";
+import img4 from "../../assets/bannerImage/p11.jpg";
 
 import ImagePreLoader from "./../../Helpers/ImagePreLoader";
 
@@ -20,7 +20,7 @@ const Banner = () => {
   const imageUrls = [img1, img3, img4];
 
   return (
-    <>
+    <div className="py-10">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -42,21 +42,21 @@ const Banner = () => {
           <LazyLoadImage src={img1} className="rounded-xl" alt="Image 1" />
           <div className="absolute h-full flex rounded-xl md:p-0  py-16 items-center  left-0 top-0  bg-gradient-to-r from-[#000000] to-[rgba(21,21,21,0)]">
             <div className="text-white md:space-y-7 md:w-2/3 w-full pl-12">
-              <h2 className="md:text-5xl text-xl md:mt-0  font-bold">
+              <p className="md:text-4xl text-xl md:mt-0  font-bold">
                 {" "}
                 <br className="md:flex hidden" />
-                <span className="text-pink-500">
-                  <span className="text-white">Join the</span> Sunlight Academy
-                  !
+             
+                <span className="text-pink-600">
+                <span className="text-white">SignUp</span> E-Medicine Online Shop
                 </span>{" "}
+
                 <br />
-                Summer School Camp
-              </h2>
+                <span className="text-xl">  Delivary All Over  <span className="text-blue-400">Bangladesh</span> </span>
+             
+              </p>
 
               <h6 className="font-bold md:text-sm text-xs text-gray-300">
-                Experience the ultimate summer school camp adventure at Sunlight
-                Academy! Join us for an enriching and exciting summer filled
-                with learning, exploration,
+              "Embrace a Healthy Summer Adventure at E-Medicine Shop! Discover Wellness, Explore Knowledge, and Elevate Your Health!"
               </h6>
             </div>
           </div>
@@ -65,22 +65,24 @@ const Banner = () => {
           <LazyLoadImage src={img4} className="rounded-xl" alt="Image 1" />
           <div className="absolute h-full flex rounded-xl md:p-0  py-16 items-center  left-0 top-0  bg-gradient-to-r from-[#000000] to-[rgba(21,21,21,0)]">
             <div className="text-white md:space-y-7 md:w-2/3 w-full pl-12">
-              <h2 className="md:text-5xl text-xl md:mt-0  font-bold">
+              <h2 className="md:text-4xl text-xl md:mt-0  font-bold">
                 {" "}
                 <br className="md:flex hidden" />
                 <span className="text-yellow-400">
-                  <span className="text-white">Join the</span> Sunlight Academy
-                  !
+                <span className="text-white">SignUp</span> E-Medicine Online Shop
                 </span>{" "}
                 <br />
-                Summer School Camp
+                <span className="text-xl">
+                Unlock the Power of E-Medicine: Your Health, Just a Click Away!
+                </span>
+          
               </h2>
 
-              <h6 className="font-bold md:text-sm text-xs text-gray-300">
+              <p className="font-bold md:text-sm text-xl text-cyan-400">
                 Experience the ultimate summer school camp adventure at Sunlight
                 Academy! Join us for an enriching and exciting summer filled
-                with learning, exploration, and unforgettable memories.
-              </h6>
+                with learning, exploration.
+              </p>
             </div>
           </div>
         </SwiperSlide>
@@ -88,27 +90,29 @@ const Banner = () => {
           <LazyLoadImage src={img3} className="rounded-xl" alt="Image 1" />
           <div className="absolute h-full flex rounded-xl md:p-0  py-16 items-center  left-0 top-0  bg-gradient-to-r from-[#000000] to-[rgba(21,21,21,0)]">
             <div className="text-white md:space-y-7 md:w-2/3 w-full pl-12">
-              <h2 className="md:text-5xl text-xl md:mt-0  font-bold">
+              <h2 className="md:text-4xl text-xl md:mt-0  font-bold">
                 {" "}
                 <br className="md:flex hidden" />
                 <span className="text-green-500">
-                  <span className="text-white">Join the</span> Sunlight Academy
-                  !
+                <span className="text-white">SignUp</span> E-Medicine Online Shop
                 </span>{" "}
                 <br />
-                Summer School Camp
+                <span className="text-xl">
+                24/7 Open!
+                </span>
+     
               </h2>
 
-              <h6 className="font-bold md:text-sm text-xs text-gray-300">
+              <p className="font-bold md:text-sm text-xl text-cyan-400">
                 Experience the ultimate summer school camp adventure at Sunlight
                 Academy! Join us for an enriching and exciting summer filled
                 with learning, exploration.
-              </h6>
+              </p>
             </div>
           </div>
         </SwiperSlide>
       </Swiper>
-    </>
+    </div>
   );
 };
 

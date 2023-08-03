@@ -1,15 +1,13 @@
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { ICourse } from './course.interface';
-import catchAsync from '../../../shared/catchAsync';
-import pick from '../../../shared/pick';
-import sendReponse from '../../../shared/sendResponse';
-import { CourseService } from './course.services';
-import { courseFilterableFields } from './course.constant';
 
+import catchAsync from '../../../shared/catchAsync';
+import sendReponse from '../../../shared/sendResponse';
+import { INote } from './note.interface';
+import { NoteService } from './note.services';
 
 const sendFacultyResponse = (res: Response, message: string, data: any) => {
-  sendReponse<ICourse>(res, {
+  sendReponse<INote>(res, {
     statusCode: StatusCodes.OK,
     success: true,
     message,
@@ -17,49 +15,38 @@ const sendFacultyResponse = (res: Response, message: string, data: any) => {
   });
 };
 
-const createCourse = catchAsync(async (req: Request, res: Response) => {
-  const { ...CourseData } = req.body;
-  const result = await CourseService.createCourse(
-    CourseData
-  );
-  sendFacultyResponse(res, 'Course is Created Successfully!', result);
+const createNote = catchAsync(async (req: Request, res: Response) => {
+  const { ...NoteData } = req.body;
+  const result = await NoteService.createNote(NoteData);
+  sendFacultyResponse(res, 'Note is Created Successfully!', result);
 });
 
-const getAllCourses = catchAsync(async (req: Request, res: Response) => {
-  const filters = pick(req.query,courseFilterableFields);
-  //const paginationOptions = pick(req.query, paginationFields);
-  const result = await CourseService.getAllCourses(filters);
-  sendFacultyResponse(res, 'Courses retrieved successfully !', result);
+const getAllNotes = catchAsync(async (req: Request, res: Response) => {
+  const result = await NoteService.getAllNotes();
+  sendFacultyResponse(res, 'Notes retrieved successfully !', result);
 });
 
-const getAllCoursesByInstructorId = catchAsync(async (req: Request, res: Response) => {
+const deleteNote = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
-  const result = await CourseService.getAllCoursesByInstructorId(id);
-  
-  sendFacultyResponse(res, 'Courses retrieved successfully by InstructorId !', result);
+  const result = await NoteService.deleteNote(id);
+  sendFacultyResponse(res, ' Note Deleted successfully !', result);
 });
-const deleteCourse = catchAsync(async (req: Request, res: Response) => {
+const getSingleNote = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
-  const result = await CourseService.deleteCourse(id);
-  sendFacultyResponse(res, ' Course Deleted successfully !', result);
+  const result = await NoteService.getSingleNote(id);
+  sendFacultyResponse(res, 'Single Note retrieved successfully !', result);
 });
-const getSingleCourse = catchAsync(async (req: Request, res: Response) => {
-  const id = req.params.id;
-  const result = await CourseService.getSingleCourse(id);
-  sendFacultyResponse(res, 'Single Course retrieved successfully !', result);
-});
-const updateCourse = catchAsync(async (req: Request, res: Response) => {
+const updateNote = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
   const UpdateData = req.body;
-  const result = await CourseService.updateCourse(id, UpdateData);
-  sendFacultyResponse(res, 'Course Data Is Updated successfully!', result);
+  const result = await NoteService.updateNote(id, UpdateData);
+  sendFacultyResponse(res, 'Note Data Is Updated successfully!', result);
 });
 
-export const CourseController = {
-  createCourse,
-  getAllCourses,
-  getSingleCourse,
-  deleteCourse,
-  updateCourse,
-  getAllCoursesByInstructorId
+export const NoteController = {
+  createNote,
+  getAllNotes,
+  getSingleNote,
+  deleteNote,
+  updateNote,
 };

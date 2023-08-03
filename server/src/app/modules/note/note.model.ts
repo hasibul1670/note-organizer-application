@@ -1,13 +1,11 @@
 import { Schema, model } from 'mongoose';
+import { INote, NoteModel } from './note.interface';
 
-import { courseMonths } from './course.constant';
-import { CourseModel, ICourse } from './course.interface';
 
-const courseSchema = new Schema<ICourse>(
+const NoteSchema = new Schema<INote>(
   {
     id: {
       type: String,
-      required: true,
       unique: true,
     },
     title: {
@@ -18,67 +16,39 @@ const courseSchema = new Schema<ICourse>(
       type: String,
       required: true,
     },
-    instructor: {
-      type: Schema.Types.ObjectId,
-      ref: 'Instructor',
-    },
-    lessons: {
-      type: Schema.Types.ObjectId,
-      ref: 'Instructor',
-    },
-    review: {
-      type: Schema.Types.ObjectId,
-      ref: 'Instructor',
-    },
-    duration: {
-      type: String,
-    },
-    enrollmentDeadline: {
-      type: Date,
-    },
-    rating: {
-      type: Number,
-      required: true,
-    },
-    isFeatured: {
-      type: Boolean,
-    },
-    courseImage: {
+    noteDescription: {
       type: String,
       required: true,
+    },
+    date: {
+      type: String,
+     
+    },
+    pinNote: {
+      type:Boolean,
+   
+    },
+    image: {
+      type: String,
+      
+    },
+    bgColor: {
+      type: String,
+     
     },
 
-    year: {
-      type: String,
-      required: true,
-    },
-    price: {
-      type: Number,
-      required: true,
-    },
-
-    startMonth: {
-      type: String,
-      required: true,
-      enum: courseMonths,
-    },
-    endMonth: {
-      type: String,
-      required: true,
-      enum: courseMonths,
-    },
   },
   {
     timestamps: true,
   }
 );
 
-courseSchema.pre('save', async function (next) {
-  const existingCourse = await Course.findOne({ title: this.title });
-  if (existingCourse) {
-    throw new Error('This Course is already Exist');
+NoteSchema.pre('save', async function (next) {
+  const existingNote = await Note.findOne({ title: this.title });
+  if (existingNote) {
+    throw new Error('This Note is already Exist');
   }
   next();
 });
 
-export const Course = model<ICourse, CourseModel>('course', courseSchema);
+export const Note = model<INote, NoteModel>('Note', NoteSchema);

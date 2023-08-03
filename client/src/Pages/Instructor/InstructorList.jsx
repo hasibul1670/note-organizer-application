@@ -31,7 +31,7 @@ const SportFitness = () => {
   return (
     <div className=" flex  justify-center">
       <Helmet>
-        <title> Sunlight Academy | Instructors🤵‍♀️ </title>
+        <title> E-Medicine | Instructors🤵‍♀️ </title>
       </Helmet>
 
       <div data-aos="fade-up" data-aos-duration="2000" className="py-20  ">

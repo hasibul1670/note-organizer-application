@@ -56,7 +56,7 @@ const ContactUs = () => {
   return (
     <div className="main-container p-10 py-20 md:hero min-h-screen   justify-items-center">
       <Helmet>
-        <title> Sunlight Academy | Contact Us</title>
+        <title> E-Medicine | Contact Us</title>
       </Helmet>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
@@ -68,7 +68,6 @@ const ContactUs = () => {
             <div className="w-1/8 mb-10 md:mb-0 mx-auto">
               <Lottie animationData={conactUs} loop={true} />
             </div>
-            
           </div>
 
           <form
@@ -79,7 +78,6 @@ const ContactUs = () => {
               <div className="card-body">
                 {/* Email */}
 
-                
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Your Email:</span>

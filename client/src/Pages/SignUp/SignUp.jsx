@@ -50,7 +50,6 @@ const SignUp = () => {
   });
 
   const onSubmit = (data) => {
- 
     const email = data.email;
     const password = data.password;
     const firstName = data.firstName;
@@ -72,7 +71,7 @@ const SignUp = () => {
   return (
     <div className="main-container p-10 py-20 md:hero min-h-screen   justify-items-center">
       <Helmet>
-        <title> Sunlight Academy | SignUp❤️</title>
+        <title> E-Medicine | SignUp❤️</title>
       </Helmet>
       <div className="hero min-h-screen bg-base-200 ">
         <div className="hero-content flex-col lg:flex-row-reverse  ">
@@ -264,8 +263,6 @@ const SignUp = () => {
                   <label className="label">
                     <span className="label-text">Contact Number : </span>
                   </label>
-
-              
 
                   <Controller
                     name="contactNo"

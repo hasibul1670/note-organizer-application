@@ -41,110 +41,50 @@ const SideBar = ({ activeMenu, onMenuClick }) => {
             <li>
               <Link
                 className={`block py-2 px-4  rounded hover:bg-cyan-500  hover:text-white  ${
-                  activeMenu === "selectedCourses" ? "bg-cyan-700 text-white"  : ""
+                  activeMenu === "myOrder" ? "bg-cyan-700 text-white"  : ""
                 }`}
-                onClick={() => handleMenuItemClick("selectedCourses")}
+                onClick={() => handleMenuItemClick("myOrder")}
               >
-                <small className="">Selected Courses</small>
+                <small className="">My Order</small>
               </Link>
             </li>
 
             <li>
               <Link
                 className={`block py-2 px-4 rounded hover:bg-cyan-500  hover:text-white  ${
-                  activeMenu === "enrolled" ? "bg-cyan-700 text-white"  : ""
+                  activeMenu === "myAddress" ? "bg-cyan-700 text-white"  : ""
                 }`}
-                onClick={() => handleMenuItemClick("enrolled")}
+                onClick={() => handleMenuItemClick("myAddress")}
               >
-                <small className="">Enrolled Courses</small>
+                <small className="">My Address</small>
               </Link>
             </li>
+
+
+
+     
 
             <li>
               <Link
                 className={`block py-2 px-4 rounded hover:bg-cyan-500  hover:text-white  ${
-                  activeMenu === "Calendar" ? "bg-cyan-700 text-white"  : ""
+                  activeMenu === "peoductRequest" ? "bg-cyan-700 text-white"  : ""
                 }`}
-                onClick={() => handleMenuItemClick("Calendar")}
+                onClick={() => handleMenuItemClick("peoductRequest")}
               >
-                <small className="">Academic Calendar</small>
+                <small className="">Product Request</small>
               </Link>
             </li>
-
+            
             <li>
               <Link
                 className={`block py-2 px-4 rounded hover:bg-cyan-500  hover:text-white  ${
-                  activeMenu === "Resources" ? "bg-cyan-700 text-white"  : ""
+                  activeMenu === "myProfile" ? "bg-cyan-700 text-white"  : ""
                 }`}
-                onClick={() => handleMenuItemClick("Resources")}
+                onClick={() => handleMenuItemClick("myProfile")}
               >
-                <small className="">Resources</small>
+                <small className="">Update Profile</small>
               </Link>
             </li>
-
-            <li>
-              <Link
-                className={`block py-2 px-4 rounded hover:bg-cyan-500  hover:text-white  ${
-                  activeMenu === "DiscussionForum" ? "bg-cyan-700 text-white"  : ""
-                }`}
-                onClick={() => handleMenuItemClick("DiscussionForum")}
-              >
-                <small className="">Discussion Forum</small>
-              </Link>
-            </li>
-            <li>
-              <Link
-                className={`block py-2 px-4 rounded hover:bg-cyan-500  hover:text-white  ${
-                  activeMenu === "HelpSupport" ? "bg-cyan-700 text-white"  : ""
-                }`}
-                onClick={() => handleMenuItemClick("HelpSupport")}
-              >
-                <small className="">Help & Support</small>
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                className={`block py-2 px-4 rounded hover:bg-cyan-500  hover:text-white  ${
-                  activeMenu === "Profile" ? "bg-cyan-700 text-white"  : ""
-                }`}
-                onClick={() => handleMenuItemClick("Profile")}
-              >
-                <small className="">Profile</small>
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                className={`block py-2 px-4 rounded hover:bg-cyan-500  hover:text-white  ${
-                  activeMenu === "AllUsers" ? "bg-cyan-700 text-white"  : ""
-                }`}
-                onClick={() => handleMenuItemClick("AllUsers")}
-              >
-                <small className="">AllUsers</small>
-              </Link>
-            </li>
-            <li>
-              <Link
-                className={`block py-2 px-4 rounded hover:bg-cyan-500  hover:text-white  ${
-                  activeMenu === "Assignments" ? "bg-cyan-700 text-white"  : ""
-                }`}
-                onClick={() => handleMenuItemClick("Assignments")}
-              >
-                <small className="">Assignments</small>
-              </Link>
-            </li>
-            <li>
-              <Link
-                className={`block py-2 px-4 rounded hover:bg-cyan-500  hover:text-white  ${
-                  activeMenu === "Enrollments" ? "bg-cyan-700 text-white"  : ""
-                }`}
-                onClick={() => handleMenuItemClick("Enrollments")}
-              >
-                <small className="">Enrollments</small>
-              </Link>
-            </li>
-
 
             <li>
               <Link

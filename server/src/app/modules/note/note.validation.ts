@@ -1,34 +1,30 @@
 import { z } from 'zod';
-import { courseMonths } from './course.constant';
 
-const createCourseZodSchema = z.object({
+const createNoteZodSchema = z.object({
   body: z.object({
     title: z.string({
       required_error: 'Title is required',
     }),
-    year: z.string({
-      required_error: 'Year is required ',
+    noteDescription: z.string({
+      required_error: 'NoteDescription is required ',
     }),
-    startMonth: z.enum([...courseMonths] as [string, ...string[]], {
-      required_error: 'Start month is needed',
+    category: z.string({
+      required_error: 'Note category is required ',
     }),
-    endMonth: z.enum([...courseMonths] as [string, ...string[]], {
-      required_error: 'End month is needed',
-    }),
-  }),
-});
-const updateCourseZodSchema = z.object({
-  body: z.object({
-    title: z.string({}).optional(),
-    year: z.string({}).optional(),
-    startMonth: z
-      .enum([...courseMonths] as [string, ...string[]], {})
-      .optional(),
-    endMonth: z.enum([...courseMonths] as [string, ...string[]], {}).optional(),
   }),
 });
 
-export const CourseValidation = {
-  createCourseZodSchema,
-  updateCourseZodSchema,
+const updateNoteZodSchema = z.object({
+  body: z.object({
+    title: z.string({}).optional(),
+    noteDescription: z.string({}).optional(),
+    category: z.string({}).optional(),
+
+ 
+  }),
+});
+
+export const NoteValidation = {
+  createNoteZodSchema,
+  updateNoteZodSchema,
 };

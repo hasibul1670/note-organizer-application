@@ -3,32 +3,25 @@ import express from 'express';
 import { ENUM_USER_ROLE } from '../../../enums/user';
 import auth from '../../middlewares/auth';
 import validateRequest from '../../middlewares/validateRequest';
-import { noteController } from './note.controller';
-import { noteValidation } from './note.validation';
+import { NoteController } from './note.controller';
+import { NoteValidation } from './note.validation';
 
 const router = express.Router();
-
 router.post(
   '/create-note',
-  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.INSTRUCTOR),
-  noteController.createnote
+  validateRequest(NoteValidation.createNoteZodSchema),
+  NoteController.createNote
 );
-router.get('/:id', noteController.getSinglenote);
-router.delete(
-  '/:id',
-  auth(ENUM_USER_ROLE.ADMIN),
-  noteController.deletenote
-);
+router.get('/:id', NoteController.getSingleNote);
+router.delete('/:id', auth(ENUM_USER_ROLE.ADMIN), NoteController.deleteNote);
 
 router.patch(
   '/:id',
-  validateRequest(noteValidation.updatenoteZodSchema),
+  validateRequest(NoteValidation.updateNoteZodSchema),
   auth(ENUM_USER_ROLE.ADMIN),
-  noteController.updatenote
+  NoteController.updateNote
 );
 
-router.get('/', noteController.getAllnotes);
-
-router.get('/instructor/:id', noteController.getAllnotesByInstructorId); 
+router.get('/', NoteController.getAllNotes);
 
 export const NoteRoutes = router;

@@ -64,7 +64,7 @@ const Login = () => {
   return (
     <div className="main-container p-4 py-5 md:hero min-h-screen   justify-items-center">
       <Helmet>
-        <title> Sunlight Academy | Login 😍</title>
+        <title> E-Medicine | Login 😍</title>
       </Helmet>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
