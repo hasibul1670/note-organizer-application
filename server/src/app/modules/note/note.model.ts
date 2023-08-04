@@ -1,7 +1,6 @@
 import { Schema, model } from 'mongoose';
 import { INote, NoteModel } from './note.interface';
 
-
 const NoteSchema = new Schema<INote>(
   {
     id: {
@@ -10,7 +9,10 @@ const NoteSchema = new Schema<INote>(
     },
     title: {
       type: String,
-      required: true,
+    },
+    userID: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
     },
     category: {
       type: String,
@@ -22,33 +24,23 @@ const NoteSchema = new Schema<INote>(
     },
     date: {
       type: String,
-     
     },
     pinNote: {
-      type:Boolean,
-   
+      type: Boolean,
+      default: false,
     },
     image: {
       type: String,
-      
     },
     bgColor: {
       type: String,
-     
     },
-
   },
   {
     timestamps: true,
   }
 );
 
-NoteSchema.pre('save', async function (next) {
-  const existingNote = await Note.findOne({ title: this.title });
-  if (existingNote) {
-    throw new Error('This Note is already Exist');
-  }
-  next();
-});
+
 
 export const Note = model<INote, NoteModel>('Note', NoteSchema);

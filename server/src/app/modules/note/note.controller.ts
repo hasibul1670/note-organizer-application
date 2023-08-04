@@ -28,7 +28,9 @@ const getAllNotes = catchAsync(async (req: Request, res: Response) => {
 
 const deleteNote = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
-  const result = await NoteService.deleteNote(id);
+  const refreshToken = req.cookies.refreshToken;
+  const result = await NoteService.deleteNote(id, refreshToken);
+
   sendFacultyResponse(res, ' Note Deleted successfully !', result);
 });
 const getSingleNote = catchAsync(async (req: Request, res: Response) => {

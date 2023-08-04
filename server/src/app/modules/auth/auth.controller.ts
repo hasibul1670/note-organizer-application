@@ -15,9 +15,9 @@ const sendLoginResponse = async (res: Response, message: string, data: any) => {
   });
 };
 
-const loginStudent = catchAsync(async (req: Request, res: Response) => {
+const loginUser = catchAsync(async (req: Request, res: Response) => {
   const { ...loginData } = req.body;
-  const result = await AuthService.loginStudent(loginData);
+  const result = await AuthService.loginUser(loginData);
   const { refreshToken, ...others } = result;
 
   const cookieOptions = {
@@ -64,7 +64,7 @@ const changePassword = catchAsync(async (req: Request, res: Response) => {
 
 
 export const AuthController = {
-  loginStudent,
+  loginUser,
   refreshToken,
   changePassword
 };

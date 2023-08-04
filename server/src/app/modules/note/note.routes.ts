@@ -13,12 +13,14 @@ router.post(
   NoteController.createNote
 );
 router.get('/:id', NoteController.getSingleNote);
-router.delete('/:id', auth(ENUM_USER_ROLE.ADMIN), NoteController.deleteNote);
+router.delete('/:id',
+  auth(ENUM_USER_ROLE.USER), 
+ NoteController.deleteNote);
 
 router.patch(
   '/:id',
   validateRequest(NoteValidation.updateNoteZodSchema),
-  auth(ENUM_USER_ROLE.ADMIN),
+  // auth(ENUM_USER_ROLE.ADMIN),
   NoteController.updateNote
 );
 

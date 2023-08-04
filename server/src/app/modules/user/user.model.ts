@@ -1,21 +1,20 @@
 /* eslint-disable @typescript-eslint/no-this-alias */
 import { Schema, model } from 'mongoose';
-import { gender } from './user.constant';
-import { IStudent, StudentModel } from './user.interface';
+import { IUser, UserModel } from './user.interface';
 
 import bcrypt from 'bcrypt';
 import config from '../../../config';
 
-export const StudentSchema = new Schema<IStudent, StudentModel>(
+export const UserSchema = new Schema<IUser, UserModel>(
   {
-    id: {
+    userID: {
       type: String,
-      required: true,
       unique: true,
     },
     role: {
       type: String,
       required: true,
+      default: 'user',
     },
     email: {
       type: String,
@@ -35,13 +34,6 @@ export const StudentSchema = new Schema<IStudent, StudentModel>(
       },
       required: true,
     },
-    gender: {
-      type: String,
-      enum: gender,
-    },
-    dateOfBirth: {
-      type: String,
-    },
     password: {
       type: String,
       required: true,
@@ -51,12 +43,6 @@ export const StudentSchema = new Schema<IStudent, StudentModel>(
       type: String,
       required: true,
     },
-
-    address: {
-      type: String,
-      required: true,
-    },
-
     profileImage: {
       type: String,
     },
@@ -69,15 +55,15 @@ export const StudentSchema = new Schema<IStudent, StudentModel>(
   }
 );
 
-StudentSchema.statics.isStudentExist = async function (
+UserSchema.statics.isUserExist = async function (
   email: string
-): Promise<Pick<IStudent, 'email' | 'password' | 'role'> | null> {
-  return await Student.findOne({ email }, { email: 1, password: 1, role: 1 });
+): Promise<Pick<IUser, 'email' | 'password'> | null> {
+  return await User.findOne({ email }, { email: 1, password: 1 });
 };
 
 //password Matching
 
-StudentSchema.statics.isPasswordMatched = async function (
+UserSchema.statics.isPasswordMatched = async function (
   givenPassword: string,
   savedPassword: string
 ): Promise<boolean> {
@@ -85,13 +71,13 @@ StudentSchema.statics.isPasswordMatched = async function (
 };
 
 // hashing user password
-StudentSchema.pre('save', async function (next) {
-  const student = this;
-  student.password = await bcrypt.hash(
-    student.password,
+UserSchema.pre('save', async function (next) {
+  const User = this;
+  User.password = await bcrypt.hash(
+    User.password,
     Number(config.default_salt_rounds)
   );
   next();
 });
 
-export const Student = model<IStudent, StudentModel>('Student', StudentSchema);
+export const User = model<IUser, UserModel>('User', UserSchema);

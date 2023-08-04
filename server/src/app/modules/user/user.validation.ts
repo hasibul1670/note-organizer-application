@@ -1,21 +1,28 @@
 import { z } from 'zod';
-import { gender } from './user.constant';
 
-const updateStudentZodSchema = z.object({
+const createUserZodSchema = z.object({
+  body: z.object({
+    name: z.object({
+      firstName: z.string(),
+      lastName: z.string(),
+    }),
+    email: z.string().email(),
+    contactNo: z.string(),
+    password: z.string().min(6) 
+  }),
+});
+
+
+const updateUserZodSchema = z.object({
   body: z.object({
     name: z.object({
       firstName: z.string().optional(),
       lastName: z.string().optional(),
     }),
-    gender: z.enum([...gender] as [string, ...string[]]).optional(),
-    dateOfBirth: z.string().optional(),
-    email: z.string().email().optional(),
-    contactNo: z.string().optional(),
-    address: z.string().optional(),
-    profileImage: z.string().optional(),
   }),
 });
 
-export const StudentValidaion = {
-  updateStudentZodSchema,
+export const UserValidaion = {
+  updateUserZodSchema,
+  createUserZodSchema
 };

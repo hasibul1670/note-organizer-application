@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ENUM_USER_ROLE } from '../../../enums/user';
 
 export type ILoginUser = {
@@ -11,6 +12,7 @@ export type ILoginUserResponse = {
   logInUserRole?: string;
   email?: string;
   name?: string | undefined;
+  userDetails?:any;
 };
 
 export type IRefreshTokenResponse = {
