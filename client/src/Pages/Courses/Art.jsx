@@ -36,7 +36,7 @@ const Art = () => {
         data-aos-duration="2000"
         className="flex justify-center  container mx-auto mb-5    px-4"
       >
-        <div className="grid  mt-4 md:grid-cols-2 lg:grid-cols-3  gap-5">
+        <div className="grid  mt-4 md:grid-cols-2 lg:grid-cols-3  gap-5"></div> <div className="grid  mt-4 md:grid-cols-2 lg:grid-cols-3  gap-5">
         {filteredCourses.map((course) => (
             <CourseCard key={course._id} course={course}></CourseCard>
           ))}

@@ -83,3 +83,6 @@ body.drawer-open {
   overflow: hidden;
 }
 
+.card{
+  cursor: pointer;
+}

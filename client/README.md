@@ -1,4 +1,7 @@
+# Client-Summer-Camp-School
+# A E-Learning Website
 
+Welcome to the Summer Camp School project! This is an e-learning website that provides a platform for organizing and managing summer camp activities and courses online. It offers a range of features for administrators, instructors, and students to enhance the summer camp learning experience.
 
 
 

@@ -60,7 +60,7 @@ const CategoryCard = () => {
   return (
     <div className="flex justify-center px-4">
       <Helmet>
-        <title> E-Medicine | Courses </title>
+        <title> Sunlight Academy | Courses </title>
       </Helmet>
 
       <div className=" py-20 ">

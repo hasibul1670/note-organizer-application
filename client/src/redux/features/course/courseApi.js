@@ -3,7 +3,7 @@ import { api } from "../../api/apiSlice";
 const productApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getCourses: builder.query({
-      query: () => "/products",
+      query: () => "/courses",
     }),
 
     singleCourse: builder.query({
