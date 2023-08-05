@@ -8,7 +8,7 @@ const CourseCard = ({ course }) => {
   const [isPopupVisible, setPopupVisible] = useState(false);
 
   const handleCardClick = async () => {
-    setPopupVisible(true);
+    await setPopupVisible(true);
     await window.my_modal_2.showModal();
   };
 
@@ -34,7 +34,7 @@ const CourseCard = ({ course }) => {
         </div>
       </div>
 
-      {isPopupVisible && <Popup course={course} onClose={handlePopupClose} />}
+      {isPopupVisible && <Popup course={course} isPopupVisible={isPopupVisible} onClose={handlePopupClose} />}
     </>
   );
 };
