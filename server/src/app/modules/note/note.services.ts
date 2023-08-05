@@ -1,11 +1,11 @@
-import { Secret } from 'jsonwebtoken';
-import config from '../../../config';
+import { StatusCodes } from 'http-status-codes';
+import { ApiError } from '../../../handlingError/ApiError';
 import { customDateFormat } from '../../../helpers/customDateFormat';
 import { generateNoteId } from '../../../helpers/generateId';
-import { jwtHelpers } from '../../../helpers/jwtHelpers';
+import { getEmailFromRefreshToken } from '../../../helpers/getEmailFromRefreshToken';
+import { IUser } from '../user/user.interface';
 import { INote } from './note.interface';
 import { Note } from './note.model';
-
 
 const createNote = async (payload: INote): Promise<INote> => {
   const date = new Date();
@@ -16,9 +16,15 @@ const createNote = async (payload: INote): Promise<INote> => {
   return result;
 };
 
-const getAllNotes = async () => {
-  const result = await Note.find({});
-  return result;
+const getAllNotes = async (refreshToken: string) => {
+  const email = getEmailFromRefreshToken(refreshToken);
+  const notes = (await Note.find({}).populate('userID')) as Array<{
+    userID: IUser;
+  }>;
+  const filteredNotes = notes.filter(
+    note => note.userID && note.userID.email === email
+  );
+  return filteredNotes;
 };
 
 const getSingleNote = async (id: string) => {
@@ -27,44 +33,43 @@ const getSingleNote = async (id: string) => {
 };
 
 const deleteNote = async (id: string, refreshToken: string) => {
-  const decodedToken = jwtHelpers.verifyToken(
-    refreshToken,
-    config.jwt.refresh_secret as Secret
-  );
-  const { email } = decodedToken;
-  const currentNote =await Note.find({ _id: id }).populate('userID');
-  if (!currentNote) {
-    throw new Error('Note not found');
+  const email = getEmailFromRefreshToken(refreshToken);
+  let result, userEmail;
+  const currentNote = (await Note.findById(id).populate('userID')) as {
+    userID: IUser;
+  };
+  if (currentNote && currentNote.userID) {
+    userEmail = currentNote.userID.email;
   }
-  const targetedNoteUserEmail = currentNote['userID']['email'] as string;
-  console.log('Hello',targetedNoteUserEmail );
-
-  if (email ===targetedNoteUserEmail ) {
-    const result = await Note.findOneAndDelete({ _id: id });
+  if (email === userEmail) {
+    result = await Note.findByIdAndDelete(id);
   } else {
-    throw new Error('Unauthorized');
+    throw new ApiError(StatusCodes.UNAUTHORIZED, 'Unauthorized');
   }
-
-
   return result;
 };
-
 
 const updateNote = async (
   id: string,
-  payload: Partial<INote>
+  payload: Partial<INote>,
+  refreshToken: string
 ): Promise<INote | null> => {
-  const result = await Note.findOneAndUpdate({ _id: id }, payload, {
+  const email = getEmailFromRefreshToken(refreshToken);
+  const noteToUpdate = (await Note.findById(id).populate('userID')) as {
+    userID: IUser;
+  };
+  if (!noteToUpdate || noteToUpdate.userID.email !== email) {
+    throw new Error('Unauthorized');
+  }
+  const updatedNote = await Note.findOneAndUpdate({ _id: id }, payload, {
     new: true,
   });
-  return result;
+  return updatedNote;
 };
-
 export const NoteService = {
   createNote,
   deleteNote,
   getAllNotes,
-
   getSingleNote,
   updateNote,
 };

@@ -22,7 +22,8 @@ const createNote = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllNotes = catchAsync(async (req: Request, res: Response) => {
-  const result = await NoteService.getAllNotes();
+  const refreshToken = req.cookies.refreshToken
+  const result = await NoteService.getAllNotes(refreshToken);
   sendFacultyResponse(res, 'Notes retrieved successfully !', result);
 });
 
@@ -40,8 +41,9 @@ const getSingleNote = catchAsync(async (req: Request, res: Response) => {
 });
 const updateNote = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
+  const refreshToken = req.cookies.refreshToken;
   const UpdateData = req.body;
-  const result = await NoteService.updateNote(id, UpdateData);
+  const result = await NoteService.updateNote(id, UpdateData,refreshToken);
   sendFacultyResponse(res, 'Note Data Is Updated successfully!', result);
 });
 

@@ -8,7 +8,7 @@ export type INote = {
   date: string;
   category: string;
   pinNote: boolean;
-  userID: Types.ObjectId | IUser;
+  userID: Types.ObjectId|IUser;
   image: string;
   bgColor: string;
 };

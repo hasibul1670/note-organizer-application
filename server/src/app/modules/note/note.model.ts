@@ -12,7 +12,8 @@ const NoteSchema = new Schema<INote>(
     },
     userID: {
       type: Schema.Types.ObjectId,
-      ref: 'User',
+      ref: 'users',
+      required: true,
     },
     category: {
       type: String,
@@ -41,6 +42,4 @@ const NoteSchema = new Schema<INote>(
   }
 );
 
-
-
-export const Note = model<INote, NoteModel>('Note', NoteSchema);
+export const Note = model<INote, NoteModel>('notes', NoteSchema);

@@ -7,10 +7,10 @@ export type UserName = {
 };
 
 export type IUser = {
+  email: string;
   userID: string;
   role: string;
   password: string;
-  email: string;
   name: UserName;
   contactNo: string;
   profileImage?: string;
