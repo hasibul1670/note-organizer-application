@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import { userDataContext } from "../../App";
 import { AuthContext } from "../../Providers/AuthProvider";
 
-import { useGetcartQuery } from "../../redux/features/cart/cartApi";
-import { useAppDispatch, useAppSelector } from "../../redux/hook";
+
 
 const NavBar = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -40,9 +39,6 @@ const NavBar = () => {
   };
 
   const email = localStorage.getItem("email");
-  const { data } = useGetcartQuery(email, {
-    refetchOnMountOrArgChange: true,
-  });
 
 
   return (

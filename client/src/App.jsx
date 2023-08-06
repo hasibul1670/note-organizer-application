@@ -9,6 +9,8 @@ import { router } from "./Routes/Routes";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import { Toaster } from "react-hot-toast";
+import "./App.css"
+
 
 export const userDataContext = createContext();
 

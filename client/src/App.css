@@ -87,28 +87,28 @@ body.drawer-open {
   cursor: pointer;
 }
 
-input {
-  width: 100%;
-  border-radius: 8px;
-  border: solid 1px #5f6368;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+
+
+
+/* Transition Styles */
+.modal-enter {
+  opacity: 0;
+  transform: scale(0.9);
 }
 
-input[type="text"] {
-  padding: 10px 16px;
-  font-size: 16px;
-  line-height: 24px;
+.modal-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
 }
 
-input[type="text"]:focus {
-  border-color: #000;
-  box-shadow: 0 0 0 3px #000;
+.modal-exit {
+  opacity: 1;
 }
 
-input[placeholder="Title"] {
-  font-weight: bold;
-}
-input {
-  @apply text-center w-full;
+.modal-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
 }
 

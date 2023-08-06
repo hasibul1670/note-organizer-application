@@ -4,7 +4,6 @@ import AcademicEnrichment from "../Pages/Courses/AcademicEnrichment";
 import Art from "../Pages/Courses/Art";
 import CategoryCard from "../Pages/Courses/CategoryCard";
 import LifeSkill from "../Pages/Courses/LifeSkill";
-import SingleCourseCard from "../Pages/Courses/SingleCourseCard";
 import SportFitness from "../Pages/Courses/SportFitness";
 import AboutUs from "../Pages/FooterComponents/AboutUs";
 import Blogs from "../Pages/FooterComponents/Blogs";
@@ -41,10 +40,7 @@ export const router = createBrowserRouter([
         path: "courses",
         element: <CategoryCard></CategoryCard>,
       },
-      {
-        path: "courses/:id",
-        element: <SingleCourseCard />,
-      },
+
       {
         path: "/courses/lifeskills",
         element: <LifeSkill></LifeSkill>,
