@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-
 const useCourses = () => {
+  const token = localStorage.getItem("token");
   const {
     data: course = [],
     isLoading: loading,
@@ -8,9 +8,11 @@ const useCourses = () => {
   } = useQuery({
     queryKey: ["course"],
     queryFn: async () => {
-      const res = await fetch(
-        "https://summer-camp-school-server-sigma.vercel.app/api/v1/courses"
-      );
+      const res = await fetch("http://localhost:4000/api/v1/note", {
+        headers: {
+          authorization:`${token}`,
+        },
+      });
       return res.json();
     },
   });

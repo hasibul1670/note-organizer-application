@@ -13,7 +13,7 @@ const AuthProvider = ({ children }) => {
   const loginUser = async (userData) => {
     setLoading(true);
     const response = await fetch(
-      "https://summer-camp-school-server-sigma.vercel.app/api/v1/auth/login",
+      "http://localhost:4000/api/v1/auth/login",
       {
         method: "POST",
         headers: {

@@ -2,7 +2,7 @@ import { StatusCodes } from 'http-status-codes';
 import { ApiError } from '../../../handlingError/ApiError';
 import { customDateFormat } from '../../../helpers/customDateFormat';
 import { generateNoteId } from '../../../helpers/generateId';
-import { getEmailFromRefreshToken } from '../../../helpers/getEmailFromRefreshToken';
+import { getEmailFromAccessToken } from '../../../helpers/getEmailFromAccessToken';
 import { IUser } from '../user/user.interface';
 import { INote } from './note.interface';
 import { Note } from './note.model';
@@ -16,8 +16,9 @@ const createNote = async (payload: INote): Promise<INote> => {
   return result;
 };
 
-const getAllNotes = async (refreshToken: string) => {
-  const email = getEmailFromRefreshToken(refreshToken);
+const getAllNotes = async (accessToken: string) => {
+  const email = getEmailFromAccessToken(accessToken);
+
   const notes = (await Note.find({}).populate('userID')) as Array<{
     userID: IUser;
   }>;
@@ -32,8 +33,8 @@ const getSingleNote = async (id: string) => {
   return result;
 };
 
-const deleteNote = async (id: string, refreshToken: string) => {
-  const email = getEmailFromRefreshToken(refreshToken);
+const deleteNote = async (id: string, accessToken: string) => {
+  const email = getEmailFromAccessToken(accessToken);
   let result, userEmail;
   const currentNote = (await Note.findById(id).populate('userID')) as {
     userID: IUser;
@@ -52,9 +53,9 @@ const deleteNote = async (id: string, refreshToken: string) => {
 const updateNote = async (
   id: string,
   payload: Partial<INote>,
-  refreshToken: string
+  accessToken: string
 ): Promise<INote | null> => {
-  const email = getEmailFromRefreshToken(refreshToken);
+  const email = getEmailFromAccessToken(accessToken);
   const noteToUpdate = (await Note.findById(id).populate('userID')) as {
     userID: IUser;
   };

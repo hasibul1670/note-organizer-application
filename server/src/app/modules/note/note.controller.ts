@@ -22,28 +22,30 @@ const createNote = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllNotes = catchAsync(async (req: Request, res: Response) => {
-  const refreshToken = req.cookies.refreshToken
-  const result = await NoteService.getAllNotes(refreshToken);
+  const token = req.headers.authorization;
+  const result = await NoteService.getAllNotes(token as string);
   sendFacultyResponse(res, 'Notes retrieved successfully !', result);
 });
 
 const deleteNote = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
-  const refreshToken = req.cookies.refreshToken;
-  const result = await NoteService.deleteNote(id, refreshToken);
-
+  const token = req.headers.authorization;
+  const result = await NoteService.deleteNote(id, token as string);
   sendFacultyResponse(res, ' Note Deleted successfully !', result);
 });
+
 const getSingleNote = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
   const result = await NoteService.getSingleNote(id);
   sendFacultyResponse(res, 'Single Note retrieved successfully !', result);
 });
+
 const updateNote = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
-  const refreshToken = req.cookies.refreshToken;
+  const token = req.headers.authorization;
   const UpdateData = req.body;
-  const result = await NoteService.updateNote(id, UpdateData,refreshToken);
+ 
+  const result = await NoteService.updateNote(id, UpdateData,token as string);
   sendFacultyResponse(res, 'Note Data Is Updated successfully!', result);
 });
 

@@ -1,9 +1,11 @@
 import Specialized from "./Specialized";
+import TakeNote from "./TakeNote";
 
 const Home = () => {
   return (
-    <div className="py-20">
+    <div className="mb-5">
       <Specialized />
+     <TakeNote/>
     </div>
   );
 };
