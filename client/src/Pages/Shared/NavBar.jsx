@@ -1,12 +1,18 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { userDataContext } from "../../App";
 import { AuthContext } from "../../Providers/AuthProvider";
 
+const NavBar = ({onSearchChange }) => {
+  const [searchInput, setSearchInput] = useState('');
+  const handleSearchInputChange = (event) => {
+    const searchTerm = event.target.value;
+    setSearchInput(searchTerm);
+    onSearchChange(searchTerm);
+  }
 
 
-const NavBar = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -16,9 +22,6 @@ const NavBar = () => {
   };
 
   const { user, logOut } = useContext(AuthContext);
-  const [loggInUser] = useContext(userDataContext);
-
-  const name2 = loggInUser?.name?.firstName;
 
   const navOptions = (
     <>
@@ -26,7 +29,9 @@ const NavBar = () => {
         <div className="form-control">
           <input
             type="text"
-            placeholder="Search"
+            placeholder="Search bt title,category,description..."
+            value={searchInput}
+            onChange={handleSearchInputChange}
             className="input input-bordered h-10 w-32 md:w-auto"
           />
         </div>
@@ -40,11 +45,9 @@ const NavBar = () => {
 
   const email = localStorage.getItem("email");
 
-
   return (
     <div className="navbar  z-20  max-w-screen-2xl bg-gray-600	 ">
       <div className="navbar-start">
-
         <div className="dropdown ">
           {!isDropdownOpen ? (
             <label
@@ -102,9 +105,7 @@ const NavBar = () => {
                       <Link
                         to="/"
                         className="ml-3 font-bold text-sm text-white  mr-2 "
-                      >
-                        {name2 || "null"}
-                      </Link>
+                      ></Link>
 
                       <button
                         onClick={handleLogOut}
@@ -125,7 +126,6 @@ const NavBar = () => {
                   )}
                 </div>
               </ul>
-
             </div>
           )}
         </div>
@@ -133,7 +133,6 @@ const NavBar = () => {
         <Link to="/" className="btn btn-ghost normal-case text-white text-xl">
           Notes{" "}
         </Link>
-
       </div>
 
       <div className="navbar-end">
@@ -144,13 +143,15 @@ const NavBar = () => {
                 {navOptions}
               </ul>
             </div>
-            <Link to="/" className=" font-bold hidden  lg:block text-sm text-white  mr-2 ">
-              {name2 || "null"}
-            </Link>
 
-            <button onClick={handleLogOut} className="btn btn-sm btn-outline  hidden  lg:block">
-              <span className="text-white text-xs">logout</span>
-            </button>
+            <Link to="/login">
+              <button
+                onClick={handleLogOut}
+                className="btn btn-sm btn-outline  hidden  lg:block"
+              >
+                <span className="text-white text-xs">logout</span>
+              </button>
+            </Link>
           </>
         ) : (
           <>

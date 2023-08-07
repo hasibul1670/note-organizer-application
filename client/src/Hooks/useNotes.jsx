@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-const useCourses = () => {
+const useNotes = () => {
   const token = localStorage.getItem("token");
   const {
     data: course = [],
@@ -10,7 +10,7 @@ const useCourses = () => {
     queryFn: async () => {
       const res = await fetch("http://localhost:4000/api/v1/note", {
         headers: {
-          authorization:`${token}`,
+          authorization: `${token}`,
         },
       });
       return res.json();
@@ -20,4 +20,4 @@ const useCourses = () => {
   return [course, loading, refetch];
 };
 
-export default useCourses;
+export default useNotes;

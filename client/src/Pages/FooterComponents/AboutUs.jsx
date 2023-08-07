@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet-async";
 
 const AboutUs = () => {
   return (
-    <div className="mx-auto px-4 pt-20">
+    <div className="mx-auto px-4">
       <Helmet>
         <title>Notes | About ❤️</title>
       </Helmet>

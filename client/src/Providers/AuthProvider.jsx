@@ -3,8 +3,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
 
-
-
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
@@ -33,9 +31,11 @@ const AuthProvider = ({ children }) => {
 
     return response.json();
   };
+
+
   const createUser = async (userData) => {
     const response = await fetch(
-      "https://summer-camp-school-server-sigma.vercel.app/api/v1/students/create-student",
+      "http://localhost:4000/api/v1/user/create-user",
       {
         method: "POST",
         headers: {

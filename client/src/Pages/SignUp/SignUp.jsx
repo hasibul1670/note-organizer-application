@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet-async";
 import { Controller, useForm } from "react-hook-form";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProvider";
 import signup from "../../assets/animation/118046-lf20-oahmox5rjson.json";
@@ -18,6 +18,7 @@ const SignUp = () => {
     setGender(event.target.value);
   };
 
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -37,6 +38,7 @@ const SignUp = () => {
         showConfirmButton: false,
         timer: 1500,
       });
+      navigate("/login");
     },
     onError: (error) => {
       Swal.fire({
@@ -50,7 +52,6 @@ const SignUp = () => {
   });
 
   const onSubmit = (data) => {
- 
     const email = data.email;
     const password = data.password;
     const firstName = data.firstName;
@@ -60,7 +61,7 @@ const SignUp = () => {
     const contactNo = data.contactNo;
     mutation.mutate({
       email: email,
-      role: "student",
+      role: "user",
       password: password,
       name: { firstName, lastName },
       address: address,
@@ -72,7 +73,7 @@ const SignUp = () => {
   return (
     <div className="main-container p-10 py-20 md:hero min-h-screen   justify-items-center">
       <Helmet>
-        <title> Sunlight Academy | SignUp❤️</title>
+        <title> Notes | SignUp❤️</title>
       </Helmet>
       <div className="hero min-h-screen bg-base-200 ">
         <div className="hero-content flex-col lg:flex-row-reverse  ">
@@ -264,8 +265,6 @@ const SignUp = () => {
                   <label className="label">
                     <span className="label-text">Contact Number : </span>
                   </label>
-
-              
 
                   <Controller
                     name="contactNo"

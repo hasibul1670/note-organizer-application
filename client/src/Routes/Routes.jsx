@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layouts/Main";
-import CategoryCard from "../Pages/Courses/CategoryCard";
 import AboutUs from "../Pages/FooterComponents/AboutUs";
 import ContactUs from "../Pages/FooterComponents/ContactUs";
 import Login from "../Pages/Login/Login";
@@ -24,10 +23,6 @@ export const router = createBrowserRouter([
       {
         path: "login",
         element: <Login></Login>,
-      },
-      {
-        path: "courses",
-        element: <CategoryCard></CategoryCard>,
       },
 
       {

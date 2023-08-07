@@ -11,12 +11,12 @@ import { BsFillPinFill } from "react-icons/bs";
 
 import { LuPinOff } from "react-icons/lu";
 import ReactModal from "react-modal";
-import useCourses from "../../Hooks/useCourses";
+import useCourses from "../../Hooks/useNotes";
 
 import { toast } from "react-hot-toast";
 import { CSSTransition } from "react-transition-group";
 import { useDeleteNoteMutation } from "../../redux/features/note/noteApi";
-const CourseCard = ({ course }) => {
+const NoteCard = ({ course }) => {
   const {
     id,
     _id,
@@ -267,4 +267,4 @@ const CourseCard = ({ course }) => {
   );
 };
 
-export default CourseCard;
+export default NoteCard;

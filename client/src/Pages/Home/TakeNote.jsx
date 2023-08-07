@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { BiNotepad } from "react-icons/bi";
-import useCourses from "../../Hooks/useCourses";
+import useCourses from "../../Hooks/useNotes";
 import { usePostNoteMutation } from "../../redux/features/note/noteApi";
 
 const TakeNote = () => {
@@ -50,7 +50,7 @@ const TakeNote = () => {
         noteDescription: data.noteDescription,
         category: category,
         userID: userID,
-        bgColor: "#ffec99", 
+        bgColor: "#ffec99",
       },
     };
     try {
