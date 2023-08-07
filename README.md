@@ -8,7 +8,7 @@ A simple note organizer application that helps you keep track of your important 
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Backend Endpoints](#backend-endpoints)
-- [Live Link](#live)
+- [Live Link](#live-link-demo-user-email-password)
 - [Contact](#contact)
 
 ## Usage
@@ -55,7 +55,7 @@ A simple note organizer application that helps you keep track of your important 
 
 You can find more details about these endpoints in the backend code.
 
-## Live Link + Demo User Email+Password
+## Live Link  Demo User Email Password
 
 - Live: [https://clientnotes.vercel.app/](https://clientnotes.vercel.app/)
 - Email: demo@gmail.com
