@@ -47,7 +47,7 @@ const NoteCard = ({ course }) => {
   const token = localStorage.getItem("token");
 
   const onSubmit = async (data) => {
-    const apiUrl = "http://localhost:4000/api/v1/note";
+    const apiUrl = "https://noteapp-amber.vercel.app/api/v1/note";
     const { title, noteDescription } = data;
     const itemId = _id;
     const payload = {

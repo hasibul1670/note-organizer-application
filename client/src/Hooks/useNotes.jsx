@@ -8,7 +8,7 @@ const useNotes = () => {
   } = useQuery({
     queryKey: ["course"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:4000/api/v1/note", {
+      const res = await fetch("https://noteapp-amber.vercel.app/api/v1/note", {
         headers: {
           authorization: `${token}`,
         },

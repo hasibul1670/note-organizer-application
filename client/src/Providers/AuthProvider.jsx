@@ -8,11 +8,11 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  
+
   const loginUser = async (userData) => {
     setLoading(true);
     const response = await fetch(
-      "http://localhost:4000/api/v1/auth/login",
+      "https://noteapp-amber.vercel.app/api/v1/auth/login",
       {
         method: "POST",
         headers: {
@@ -32,10 +32,9 @@ const AuthProvider = ({ children }) => {
     return response.json();
   };
 
-
   const createUser = async (userData) => {
     const response = await fetch(
-      "http://localhost:4000/api/v1/user/create-user",
+      "https://noteapp-amber.vercel.app/api/v1/user/create-user",
       {
         method: "POST",
         headers: {
@@ -69,7 +68,6 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem("email");
     localStorage.removeItem("userId");
     setUser(null);
-
   };
 
   const authInfo = {
