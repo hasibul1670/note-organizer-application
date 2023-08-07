@@ -4,6 +4,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { BiNotepad } from "react-icons/bi";
 import useCourses from "../../Hooks/useNotes";
 import { usePostNoteMutation } from "../../redux/features/note/noteApi";
@@ -90,11 +91,11 @@ const TakeNote = () => {
           <BiNotepad />
         </span>
       </button>
-      <dialog id="my_modal_2" className=" modal">
+      <dialog id="my_modal_2" className=" modal ">
         <form
           onSubmit={handleSubmit(onSubmit)}
           method="dialog"
-          className="modal-box w-11/12 bg-base-300 h-64 max-w-2xl"
+          className="modal-box w-11/12 bg-base-300 h-64 max-w-2xl "
         >
           <input
             type="text"
@@ -105,10 +106,11 @@ const TakeNote = () => {
           <div className="dropdown ml-5 dropdown-hover">
             <p
               tabIndex={0}
-              className="rounded p-1 capitalize btn-primary ml-1"
+              className=" capitalize btn text-xs btn-sm btn-primary ml-1"
               onClick={toggleDropdown}
             >
-              {category ? category : DropdownOptions[0]}
+              Category : {category ? category : DropdownOptions[0]}
+              {dropdownOpen ? <AiFillCaretUp /> : <AiFillCaretDown />}
             </p>
 
             {dropdownOpen && (
@@ -134,21 +136,15 @@ const TakeNote = () => {
 
           <textarea
             placeholder="Take a note..."
-            className="textarea textarea-ghost w-96 "
+            className="textarea textarea-ghost w-96 h-32"
             {...register("noteDescription", { required: true })}
           ></textarea>
-          <button
-            onClick={handleCloseModal}
-            className="btn ml-5  btn-xs capitalize"
-          >
-            Save
-          </button>
         </form>
 
         <form
           method="dialog"
           onClick={handleCloseModal}
-          className="modal-backdrop"
+          className="modal-backdrop  "
         >
           <button>Save</button>
         </form>

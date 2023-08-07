@@ -29,10 +29,11 @@ const NavBar = ({onSearchChange }) => {
         <div className="form-control">
           <input
             type="text"
+            className="input input-bordered  h-10 w-48 md:w-auto"
             placeholder="Search bt title,category,description..."
             value={searchInput}
             onChange={handleSearchInputChange}
-            className="input input-bordered h-10 w-32 md:w-auto"
+        
           />
         </div>
       </li>
