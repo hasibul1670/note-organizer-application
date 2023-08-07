@@ -55,9 +55,11 @@ A simple note organizer application that helps you keep track of your important 
 
 You can find more details about these endpoints in the backend code.
 
-## Live Link
+## Live Link + Demo User Email+Password
 
 - Live: [https://clientnotes.vercel.app/](https://clientnotes.vercel.app/)
+- Email: demo@gmail.com
+- Password: 110220
 
 ## Contact
 
