@@ -10,6 +10,7 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  
   const loginUser = async (userData) => {
     setLoading(true);
     const response = await fetch(
@@ -66,6 +67,7 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     localStorage.removeItem("token");
     localStorage.removeItem("email");
+    localStorage.removeItem("userId");
     setUser(null);
 
   };

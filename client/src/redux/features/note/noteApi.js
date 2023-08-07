@@ -3,36 +3,28 @@ import { api } from "../../api/apiSlice";
 const noteApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getnotes: builder.query({
-      query: () => "/notes",
+      query: () => "/note",
     }),
 
     singlenote: builder.query({
-      query: (id) => `/notes/${id}`,
+      query: (id) => `/note/${id}`,
     }),
 
-    postnote: builder.mutation({
+    postNote: builder.mutation({
       query: ({ data }) => ({
-        url: `/notes/create-note`,
+        url: `/note/create-note`,
         method: "POST",
         body: data,
       }),
     }),
 
-    deletenote: builder.mutation({
+    deleteNote: builder.mutation({
       query: (id) => ({
-        url: `/notes/${id}`,
+        url: `/note/${id}`,
         method: "DELETE",
       }),
     }),
 
-    postReview: builder.mutation({
-      query: ({ id, data }) => ({
-        url: `/notes/review/${id}`,
-        method: "POST",
-        body: data,
-      }),
-      invalidatesTags: ["review"],
-    }),
     editNote: builder.mutation({
       query: ({ id, data, headers }) => ({
         url: `note/${id}`,
@@ -47,8 +39,7 @@ const noteApi = api.injectEndpoints({
 export const {
   useGetnotesQuery,
   useEditNoteMutation,
-  usePostReviewMutation,
-  usePostnoteMutation,
-  useDeletenoteMutation,
+  usePostNoteMutation,
+  useDeleteNoteMutation,
   useSinglenoteQuery,
 } = noteApi;

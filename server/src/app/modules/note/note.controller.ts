@@ -17,6 +17,7 @@ const sendFacultyResponse = (res: Response, message: string, data: any) => {
 
 const createNote = catchAsync(async (req: Request, res: Response) => {
   const { ...NoteData } = req.body;
+  console.log('Hello',req.body);
   const result = await NoteService.createNote(NoteData);
   sendFacultyResponse(res, 'Note is Created Successfully!', result);
 });
@@ -29,8 +30,7 @@ const getAllNotes = catchAsync(async (req: Request, res: Response) => {
 
 const deleteNote = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
-  const token = req.headers.authorization;
-  const result = await NoteService.deleteNote(id, token as string);
+  const result = await NoteService.deleteNote(id);
   sendFacultyResponse(res, ' Note Deleted successfully !', result);
 });
 

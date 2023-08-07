@@ -1,5 +1,3 @@
-import { StatusCodes } from 'http-status-codes';
-import { ApiError } from '../../../handlingError/ApiError';
 import { customDateFormat } from '../../../helpers/customDateFormat';
 import { generateNoteId } from '../../../helpers/generateId';
 import { getEmailFromAccessToken } from '../../../helpers/getEmailFromAccessToken';
@@ -33,20 +31,9 @@ const getSingleNote = async (id: string) => {
   return result;
 };
 
-const deleteNote = async (id: string, accessToken: string) => {
-  const email = getEmailFromAccessToken(accessToken);
-  let result, userEmail;
-  const currentNote = (await Note.findById(id).populate('userID')) as {
-    userID: IUser;
-  };
-  if (currentNote && currentNote.userID) {
-    userEmail = currentNote.userID.email;
-  }
-  if (email === userEmail) {
-    result = await Note.findByIdAndDelete(id);
-  } else {
-    throw new ApiError(StatusCodes.UNAUTHORIZED, 'Unauthorized');
-  }
+const deleteNote = async (id: string) => {
+  console.log('Hello',id);
+  const result = await Note.findByIdAndDelete({_id:id});
   return result;
 };
 

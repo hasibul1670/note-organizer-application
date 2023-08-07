@@ -27,11 +27,12 @@ const Login = () => {
   const mutation = useMutation((userData) => loginUser(userData), {
     onSuccess: (data) => {
       reset();
-
-      const token = data.data.accessToken;
-      const email = data.data.email;
+      const token = data?.data?.accessToken;
+      const email = data?.data?.email;
+      const userId = data?.data?.userDetails?.id;
       localStorage.setItem("token", token);
       localStorage.setItem("email", email);
+      localStorage.setItem("userId", userId);
 
       Swal.fire({
         position: "top-center",

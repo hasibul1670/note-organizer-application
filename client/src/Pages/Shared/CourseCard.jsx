@@ -6,13 +6,16 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
+import { AiOutlineDelete } from "react-icons/ai";
 import { BsFillPinFill } from "react-icons/bs";
 
 import { LuPinOff } from "react-icons/lu";
 import ReactModal from "react-modal";
 import useCourses from "../../Hooks/useCourses";
 
+import { toast } from "react-hot-toast";
 import { CSSTransition } from "react-transition-group";
+import { useDeleteNoteMutation } from "../../redux/features/note/noteApi";
 const CourseCard = ({ course }) => {
   const {
     id,
@@ -33,6 +36,8 @@ const CourseCard = ({ course }) => {
   const [isPopupVisible, setPopupVisible] = useState(false);
   const [pinStatus, setPinStatus] = useState(pinNote);
   const { control, handleSubmit } = useForm();
+  const [deleteNote] = useDeleteNoteMutation();
+
   const handleCardClick = () => {
     setPopupVisible(true);
   };
@@ -75,7 +80,14 @@ const CourseCard = ({ course }) => {
   const handleClickPin = (e) => {
     e.preventDefault();
     setPinStatus(!pinStatus);
-    console.log("Hello", pinStatus);
+  };
+  const handleDeleteNote = async (e) => {
+    const result = await deleteNote(_id).unwrap();
+    console.log("Hello", result);
+    if (result?.statusCode === 200) {
+      toast.success("Note deleted successfully");
+      refetch();
+    }
   };
 
   useEffect(() => {
@@ -204,13 +216,22 @@ const CourseCard = ({ course }) => {
           </form>
 
           <div>
-            <button
-              onClick={handleCloseModal}
-              type="button"
-              className={`btn btn-secondary capitalize btn-sm mt-2`}
-            >
-              Save
-            </button>
+            <div className="flex justify-between">
+              <button
+                onClick={handleCloseModal}
+                type="button"
+                className={`btn btn-secondary  capitalize btn-sm mt-2`}
+              >
+                Save
+              </button>
+              <button
+                className="tooltip tooltip-warning text-red-700  text-2xl ml-5 btn btn-sm btn-ghost capitalize"
+                onClick={handleDeleteNote}
+                data-tip="Delete note"
+              >
+                <AiOutlineDelete />
+              </button>
+            </div>
 
             <div className="mt-4 bg-cyan-950 p-2 rounded-lg">
               {[
