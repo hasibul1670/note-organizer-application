@@ -1,6 +1,6 @@
 # Note Organizer Application
 
-A simple note organizer application that helps you keep track of your important notes.
+A simple note organizer application to help you efficiently manage your important notes.
 
 ## Table of Contents
 
@@ -8,21 +8,21 @@ A simple note organizer application that helps you keep track of your important 
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Backend Endpoints](#backend-endpoints)
-- [Live Link](#live-link-demo-user-email-password)
+- [Live Demo](#live-demo)
 - [Contact](#contact)
 
 ## Usage
 
-- Create, Update, and delete notes.
-- Show Actual Time & Date of Notes.
-- Categorize notes with tags.
-- Search for specific notes using Title, Category, Notes Description.
+- Create, update, and delete notes.
+- Display actual time and date for each note.
+- Categorize notes using tags.
+- Easily search for specific notes by title, category, or description.
 
 ## Features
 
 - User-friendly interface.
-- Real-time syncing across devices.
-- Tag-based organization for easy categorization.
+- Real-time synchronization across devices.
+- Efficient tag-based organization.
 
 ## Technologies Used
 
@@ -34,10 +34,10 @@ A simple note organizer application that helps you keep track of your important 
 
 ### Back-End
 
-- NodeJs
+- Node.js
 - TypeScript
-- ExpressJS
-- JWT
+- Express.js
+- JWT for authentication
 
 ### Database
 
@@ -45,25 +45,24 @@ A simple note organizer application that helps you keep track of your important 
 
 ## Backend Endpoints
 
-- `https://noteapp-amber.vercel.app/api/v1` : Base URL
-
+- Base URL: `https://noteapp-amber.vercel.app/api/v1`
 - `GET /note`: Get all notes.
 - `GET /note/:noteId`: Get a specific note by ID.
 - `POST /note/create-note`: Create a new note.
 - `PATCH /note/:noteId`: Update a note by ID.
 - `DELETE /note/:noteId`: Delete a note by ID.
 
-You can find more details about these endpoints in the backend code.
+Please refer to the backend code for more detailed information about these endpoints.
 
-## Live Link  Demo User Email Password
+## Live Demo
 
-- Live: [https://clientnotes.vercel.app/](https://clientnotes.vercel.app/)
-- Email: demo@gmail.com
-- Password: 110220
+- Visit the [Live Demo](https://clientnotes.vercel.app/)
+- Demo User Email: demo@gmail.com
+- Demo User Password: 110220
 
 ## Contact
 
-For any inquiries, please contact me at:
+For any inquiries, please feel free to reach out:
 
 - Email: [hasibul.dcc@gmail.com](mailto:hasibul.dcc@gmail.com)
 - Portfolio: [https://hasibul-islam365.netlify.app](https://hasibul-islam365.netlify.app)
