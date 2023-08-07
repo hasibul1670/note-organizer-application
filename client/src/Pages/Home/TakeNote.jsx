@@ -80,7 +80,7 @@ const TakeNote = () => {
   }, [category, isPopupVisible]);
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center mb-5">
       <button
         className="btn capitalize  btn-primary "
         onClick={handleCardClick}

@@ -2,8 +2,11 @@
 import Fuse from "fuse.js";
 import { useEffect, useState } from "react";
 import useCourses from "../../Hooks/useNotes";
+import Footer from "../Shared/Footer";
 import NavBar from "../Shared/NavBar";
-import Specialized from "./NotePage";
+
+import PrivateRoute from "./../../Routes/PrivateRoute";
+import NotePage from "./NotePage";
 import TakeNote from "./TakeNote";
 
 const Home = () => {
@@ -38,8 +41,11 @@ const Home = () => {
   return (
     <div className="mb-5">
       <NavBar onSearchChange={handleSearchChange} />
-      <Specialized filteredNotes={filteredNotes} />
-      <TakeNote />
+      <NotePage filteredNotes={filteredNotes} />
+      <PrivateRoute>
+        <TakeNote />{" "}
+      </PrivateRoute>
+      <Footer />
     </div>
   );
 };
