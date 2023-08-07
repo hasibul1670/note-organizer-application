@@ -1,4 +1,4 @@
-## Note Organizer Application
+# Note Organizer Application
 
 A simple note organizer application that helps you keep track of your important notes.
 
@@ -7,24 +7,15 @@ A simple note organizer application that helps you keep track of your important 
 - [Usage](#usage)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [Contributing](#contributing)
-- [License](#license)
-- [Acknowledgments](#acknowledgments)
+- [Backend Endpoints](#backend-endpoints)
 - [Contact](#contact)
-
-## Installation
-
-1. Clone the repository.
-2. Navigate to the project directory.
-3. Install dependencies using `npm install`.
-4. Start the application with `npm start`.
 
 ## Usage
 
 - Create, Update, and delete notes.
 - Show Actual Time & Date of Notes.
 - Categorize notes with tags.
-- Search for specific notes using Title,Category,Notes Description.
+- Search for specific notes using Title, Category, Notes Description.
 
 ## Features
 
@@ -51,11 +42,21 @@ A simple note organizer application that helps you keep track of your important 
 
 - Non-SQL [MongoDB]
 
+## Backend Endpoints
 
+- `https://noteapp-amber.vercel.app/api/v1`
 
+- `GET /note`: Get all notes.
+- `GET /note/:noteId`: Get a specific note by ID.
+- `POST /note/create-note`: Create a new note.
+- `PATCH /note/:noteId`: Update a note by ID.
+- `DELETE /note/:noteId`: Delete a note by ID.
+
+You can find more details about these endpoints in the backend code.
 
 ## Contact
 
-For any inquiries, please contact me at
- - [hasibul.dcc@gmail.com](hasibul.dcc@gmail.com).
- - [https://hasibul-islam365.netlify.app/](com).
+For any inquiries, please contact me at:
+
+- Email: [hasibul.dcc@gmail.com](mailto:hasibul.dcc@gmail.com)
+- Portfolio: [https://hasibul-islam365.netlify.app](https://hasibul-islam365.netlify.app)
