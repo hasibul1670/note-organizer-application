@@ -17,7 +17,6 @@ const sendFacultyResponse = (res: Response, message: string, data: any) => {
 
 const createNote = catchAsync(async (req: Request, res: Response) => {
   const { ...NoteData } = req.body;
-  console.log('Hello',req.body);
   const result = await NoteService.createNote(NoteData);
   sendFacultyResponse(res, 'Note is Created Successfully!', result);
 });

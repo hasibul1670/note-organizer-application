@@ -83,7 +83,7 @@ const NoteCard = ({ course }) => {
   };
   const handleDeleteNote = async (e) => {
     const result = await deleteNote(_id).unwrap();
-    console.log("Hello", result);
+
     if (result?.statusCode === 200) {
       toast.success("Note deleted successfully");
       refetch();

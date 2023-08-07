@@ -56,7 +56,7 @@ const ContactUs = () => {
   return (
     <div className="main-container p-10 py-20 md:hero min-h-screen   justify-items-center">
       <Helmet>
-        <title> Sunlight Academy | Contact Us</title>
+        <title> Notes | Contact Us</title>
       </Helmet>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">

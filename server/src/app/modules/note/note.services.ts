@@ -32,7 +32,6 @@ const getSingleNote = async (id: string) => {
 };
 
 const deleteNote = async (id: string) => {
-  console.log('Hello',id);
   const result = await Note.findByIdAndDelete({_id:id});
   return result;
 };
