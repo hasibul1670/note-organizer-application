@@ -207,7 +207,7 @@ const NoteCard = ({ course }) => {
                   <textarea
                     {...field}
                     id="noteDescription"
-                    className="textarea textarea-bordered textarea-lg w-full"
+                    className="textarea textarea-bordered h-48 w-full"
                     placeholder="Write note..."
                   />
                 )}
