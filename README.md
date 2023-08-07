@@ -8,6 +8,7 @@ A simple note organizer application that helps you keep track of your important 
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Backend Endpoints](#backend-endpoints)
+- [Live Link](#live-link)
 - [Contact](#contact)
 
 ## Usage
@@ -44,7 +45,7 @@ A simple note organizer application that helps you keep track of your important 
 
 ## Backend Endpoints
 
-- `https://noteapp-amber.vercel.app/api/v1`
+- `https://noteapp-amber.vercel.app/api/v1` : Base URL
 
 - `GET /note`: Get all notes.
 - `GET /note/:noteId`: Get a specific note by ID.
@@ -53,6 +54,10 @@ A simple note organizer application that helps you keep track of your important 
 - `DELETE /note/:noteId`: Delete a note by ID.
 
 You can find more details about these endpoints in the backend code.
+
+## Live Link
+
+- Live: [https://clientnotes.vercel.app/](https://clientnotes.vercel.app/)
 
 ## Contact
 
