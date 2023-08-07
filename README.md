@@ -8,7 +8,7 @@ A simple note organizer application that helps you keep track of your important 
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Backend Endpoints](#backend-endpoints)
-- [Live Link](#live-link)
+- [Live Link](#live)
 - [Contact](#contact)
 
 ## Usage
