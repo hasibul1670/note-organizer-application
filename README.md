@@ -23,6 +23,7 @@ A simple note organizer application to help you efficiently manage your importan
 - User-friendly interface.
 - Real-time synchronization across devices.
 - Efficient tag-based organization.
+- Search Functionality.
 
 ## Technologies Used
 
