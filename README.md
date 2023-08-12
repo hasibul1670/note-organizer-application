@@ -24,6 +24,7 @@ A simple note organizer application to help you efficiently manage your importan
 - Real-time synchronization across devices.
 - Efficient tag-based organization.
 - Search Functionality.
+- Pin Unpin Functionality.
 
 ## Technologies Used
 
