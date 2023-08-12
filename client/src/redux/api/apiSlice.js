@@ -5,7 +5,6 @@ export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://noteapp-amber.vercel.app/api/v1",
-    // baseUrl: "http://localhost:4000/api/v1",
     prepareHeaders: (headers, { getState }) => {
       const token = localStorage.getItem("token");
       if (token) {
@@ -15,7 +14,7 @@ export const api = createApi({
     },
   }),
 
-  tagTypes: ["category", "bgColor", "noteDescription","data", "title"],
+  tagTypes: ["category", "bgColor", "noteDescription", "data", "title"],
 
   endpoints: () => ({}),
 });

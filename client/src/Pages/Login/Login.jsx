@@ -16,7 +16,7 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.path || "/";
 
-  const { loginUser, setUser } = useContext(AuthContext);
+  const { loginUser, setUser, loading } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -27,7 +27,6 @@ const Login = () => {
   const mutation = useMutation((userData) => loginUser(userData), {
     onSuccess: (data) => {
       reset();
-      console.log("Hello", data.data);
       const token = data?.data?.accessToken;
       const email = data?.data?.email;
       const userId = data?.data?.userDetails?.id;
@@ -146,7 +145,12 @@ const Login = () => {
                 </label>
 
                 <div className="form-control mt-6">
-                  <button className="btn btn-primary">Login</button>
+                  {mutation.isLoading ? (
+                    <span className="loading loading-spinner text-primary loading-lg"></span>
+                  ) : (
+                    <button className="btn btn-primary">Login</button>
+                  )}
+
                   <p className="text-sm font-bold mt-4">
                     Don't you have any Account ?{" "}
                     <Link to="/signup" className="text-blue-500 ">
