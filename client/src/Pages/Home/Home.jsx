@@ -1,23 +1,25 @@
 /* eslint-disable no-unused-vars */
 import Fuse from "fuse.js";
 import { useEffect, useState } from "react";
-import useCourses from "../../Hooks/useNotes";
 import Footer from "../Shared/Footer";
 import NavBar from "../Shared/NavBar";
 
 import PrivateRoute from "./../../Routes/PrivateRoute";
 import NotePage from "./NotePage";
 import TakeNote from "./TakeNote";
+import { useGetAllNotesQuery } from "../../redux/features/note/noteApi";
 
 const Home = () => {
-  const [courses, loading, refetch] = useCourses();
-  const noteArray = courses?.data;
 
+  const { data, isLoading } = useGetAllNotesQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
+  const noteArray = data?.data;
   const [filteredNotes, setFilteredNotes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    setFilteredNotes(noteArray); // Initially, set filteredNotes to all notes
+    setFilteredNotes(noteArray);
   }, [noteArray]);
 
   const handleSearchChange = (searchTerm) => {
@@ -26,7 +28,7 @@ const Home = () => {
 
   useEffect(() => {
     if (!searchTerm) {
-      setFilteredNotes(noteArray); // Show all notes when search term is empty
+      setFilteredNotes(noteArray);
     } else {
       const options = {
         keys: ["title", "category", "noteDescription"],
@@ -41,7 +43,7 @@ const Home = () => {
   return (
     <div className="mb-5">
       <NavBar onSearchChange={handleSearchChange} />
-      <NotePage filteredNotes={filteredNotes} />
+      <NotePage filteredNotes={filteredNotes} isLoading ={isLoading} />
       <PrivateRoute>
         <TakeNote />{" "}
       </PrivateRoute>

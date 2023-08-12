@@ -2,20 +2,19 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
+import { toast } from "react-hot-toast";
 import { AiOutlineDelete } from "react-icons/ai";
 import { BsFillPinFill } from "react-icons/bs";
-
 import { LuPinOff } from "react-icons/lu";
 import ReactModal from "react-modal";
-import useCourses from "../../Hooks/useNotes";
-
-import { toast } from "react-hot-toast";
 import { CSSTransition } from "react-transition-group";
-import { useDeleteNoteMutation } from "../../redux/features/note/noteApi";
+import {
+  useDeleteNoteMutation,
+  useEditNoteMutation,
+} from "../../redux/features/note/noteApi";
 const NoteCard = ({ course }) => {
   const {
     id,
@@ -27,7 +26,6 @@ const NoteCard = ({ course }) => {
     category,
     bgColor: initialBgColor,
   } = course;
-  const [courses, loading, refetch] = useCourses();
   const [bgColor, setBgColor] = useState(initialBgColor);
   const handleColorSelection = (color) => {
     setBgColor(color);
@@ -37,6 +35,7 @@ const NoteCard = ({ course }) => {
   const [pinStatus, setPinStatus] = useState(pinNote);
   const { control, handleSubmit } = useForm();
   const [deleteNote] = useDeleteNoteMutation();
+  const [editNote] = useEditNoteMutation();
 
   const handleCardClick = () => {
     setPopupVisible(true);
@@ -44,17 +43,16 @@ const NoteCard = ({ course }) => {
   const handleCloseModal = () => {
     setPopupVisible(false);
   };
-  const token = localStorage.getItem("token");
-
   const onSubmit = async (data) => {
-    const apiUrl = "https://noteapp-amber.vercel.app/api/v1/note";
     const { title, noteDescription } = data;
-    const itemId = _id;
     const payload = {
-      title,
-      noteDescription,
-      bgColor,
-      pinNote: pinStatus,
+      id: _id,
+      data: {
+        title,
+        noteDescription,
+        bgColor,
+        pinNote: pinStatus,
+      },
     };
     if (
       (title !== initialTitle) |
@@ -62,32 +60,16 @@ const NoteCard = ({ course }) => {
         (bgColor !== initialBgColor) |
         (pinNote !== pinStatus))
     ) {
-      try {
-        const response = await axios.patch(`${apiUrl}/${itemId}`, payload, {
-          headers: {
-            authorization: `${token}`,
-          },
-        });
-
-        if (response.status === 200) {
-          await refetch();
-        }
-      } catch (error) {
-        console.error("Error updating item:", error);
-      }
+      const result = await editNote(payload).unwrap();
     }
   };
+
   const handleClickPin = (e) => {
     e.preventDefault();
     setPinStatus(!pinStatus);
   };
   const handleDeleteNote = async (e) => {
     const result = await deleteNote(_id).unwrap();
-
-    if (result?.statusCode === 200) {
-      toast.success("Note deleted successfully");
-      refetch();
-    }
   };
 
   useEffect(() => {
@@ -174,7 +156,7 @@ const NoteCard = ({ course }) => {
                     {...field}
                     type="text"
                     id="title"
-                    className="input input-bordered w-full"
+                    className="font-bold  input input-bordered w-full"
                     placeholder="Title"
                   />
                 )}
@@ -207,7 +189,7 @@ const NoteCard = ({ course }) => {
                   <textarea
                     {...field}
                     id="noteDescription"
-                    className="textarea textarea-bordered h-48 w-full"
+                    className="textarea  font-bold textarea-bordered h-48 w-full"
                     placeholder="Write note..."
                   />
                 )}

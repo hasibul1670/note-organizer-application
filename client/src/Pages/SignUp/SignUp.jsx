@@ -4,8 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 import Lottie from "lottie-react";
 import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Controller, useForm } from "react-hook-form";
-import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import { useForm } from "react-hook-form";
 import "react-phone-number-input/style.css";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -248,6 +247,7 @@ const SignUp = () => {
                   <label className="label">
                     <span className="label-text">Address : </span>
                   </label>
+
                   <input
                     {...register("address", { required: true })}
                     name="address"
@@ -265,28 +265,21 @@ const SignUp = () => {
                   <label className="label">
                     <span className="label-text">Contact Number : </span>
                   </label>
-
-                  <Controller
+                  <input
+                    {...register("contactNo", {
+                      required: true,
+                     
+                    })}
                     name="contactNo"
-                    control={control}
-                    rules={{
-                      validate: (value) => isValidPhoneNumber(value),
-                    }}
-                    render={({ field: { onChange, value } }) => (
-                      <PhoneInput
-                        value={value}
-                        {...register("contactNo", { required: true })}
-                        onChange={onChange}
-                        className="input input-bordered"
-                        defaultCountry="BD"
-                        id="contactNo"
-                      />
-                    )}
+                    type="text"
+                    placeholder="Contact Number"
+                    className="input input-bordered"
+                    maxLength={11}
                   />
 
-                  {errors["contactNo"] && (
-                    <small className=" text-red-600">
-                      Invalid Phone Number
+                  {errors.contactNo?.type === "required" && (
+                    <small className="text-red-600">
+                      Phone Number is Required
                     </small>
                   )}
                 </div>

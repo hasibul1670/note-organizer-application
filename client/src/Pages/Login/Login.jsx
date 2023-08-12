@@ -14,7 +14,7 @@ import login from "../../assets/animation/38435-register.json";
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.path || "/";
 
   const { loginUser, setUser } = useContext(AuthContext);
   const {
@@ -27,12 +27,15 @@ const Login = () => {
   const mutation = useMutation((userData) => loginUser(userData), {
     onSuccess: (data) => {
       reset();
+      console.log("Hello", data.data);
       const token = data?.data?.accessToken;
       const email = data?.data?.email;
       const userId = data?.data?.userDetails?.id;
+      const name = data?.data?.userDetails?.name?.firstName;
       localStorage.setItem("token", token);
       localStorage.setItem("email", email);
       localStorage.setItem("userId", userId);
+      localStorage.setItem("name", name);
 
       Swal.fire({
         position: "top-center",

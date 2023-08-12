@@ -6,11 +6,9 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { BiNotepad } from "react-icons/bi";
-import useCourses from "../../Hooks/useNotes";
 import { usePostNoteMutation } from "../../redux/features/note/noteApi";
 
 const TakeNote = () => {
-  const [courses, loading, refetch] = useCourses();
   const [isPopupVisible, setPopupVisible] = useState(false);
 
   const handleCardClick = () => {
@@ -61,7 +59,6 @@ const TakeNote = () => {
       if (statusCode === 200) {
         toast.success("Note Added Successfully");
         reset();
-        refetch();
       }
       if (status === 409) {
         toast.error("This Note Already Exists");
@@ -136,7 +133,7 @@ const TakeNote = () => {
 
           <textarea
             placeholder="Take a note..."
-            className="textarea textarea-ghost w-96 h-32"
+            className= "font-bold textarea textarea-ghost w-96 h-32"
             {...register("noteDescription", { required: true })}
           ></textarea>
         </form>

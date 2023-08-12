@@ -67,6 +67,7 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem("token");
     localStorage.removeItem("email");
     localStorage.removeItem("userId");
+    localStorage.removeItem("name");
     setUser(null);
   };
 
